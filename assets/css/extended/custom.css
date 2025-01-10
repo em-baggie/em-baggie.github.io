@@ -114,6 +114,7 @@ pre, code {
     padding: 2rem;
     transition: transform 0.2s ease;
     border: 1px solid var(--border);
+    font-size: 1.2rem;
 }
 
 .project-card:hover {
