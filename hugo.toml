@@ -1,0 +1,58 @@
+baseURL = ''
+languageCode = 'en-us'
+title = 'Emma Baghurst'
+theme = 'PaperMod'
+
+[menu]
+[[menu.main]]
+    identifier = "about"
+    name = "About Me"
+    url = "/about/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact Me"
+    url = "/contact/"
+    weight = 4
+
+[params]
+  defaultTheme = "dark"
+  disableThemeToggle = true
+
+
+  [params.profileMode]
+    enabled = true
+    title = "Dr Emma Baghurst"
+    subtitle = "Software Engineer in Fintech with a background in medicine."
+    imageUrl = "/images/profile.png"
+    imageWidth = 270
+    imageHeight = 270
+    imageTitle = "Emma Baghurst"
+    buttons = [
+      { name = "Check out my projects!", url = "/projects/" },
+    ]
+
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/em-baggie"
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/ebaghurst/"
+    
+
+  [params.assets]
+    customCSS = ["css/custom.css"]
+
+[params.label]
+  text = "Emma Baghurst"
+  icon = "/img/logo.png"
+  iconHeight = 32
+
