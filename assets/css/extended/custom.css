@@ -212,16 +212,17 @@ pre, code {
 }
 
 .development-badge {
-    display: inline-flex;
+    display: block;
     align-items: center;
     padding: 0.3rem 0.8rem;
     border-radius: var(--radius);
     font-size: 0.9rem;
     font-weight: 500;
-    margin-left: 0.5rem;
+    margin-left: 0;
+    margin-bottom: 0.5rem;
     background: #FF4B4B;
     color: #fff;
-    vertical-align: middle;
+    width: fit-content;
 }
 
 .post-content {
