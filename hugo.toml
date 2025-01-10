@@ -31,7 +31,7 @@ theme = 'PaperMod'
     enabled = true
     title = "Dr Emma Baghurst"
     subtitle = "Software Engineer in Fintech with a background in medicine."
-    imageUrl = "/images/profile.png"
+    imageUrl = "/personal-website/images/profile.png"
     imageWidth = 270
     imageHeight = 270
     imageTitle = "Emma Baghurst"
@@ -53,6 +53,6 @@ theme = 'PaperMod'
 
 [params.label]
   text = "Emma Baghurst"
-  icon = "/img/logo.png"
+  icon = "/personal-website/img/logo.png"
   iconHeight = 32
 
