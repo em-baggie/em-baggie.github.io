@@ -17,6 +17,12 @@ theme = 'PaperMod'
     weight = 2
 
   [[menu.main]]
+    identifier = "resources"
+    name = "Resources"
+    url = "/resources/"
+    weight = 3
+
+  [[menu.main]]
     identifier = "contact"
     name = "Contact Me"
     url = "/contact/"
