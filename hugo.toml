@@ -10,23 +10,29 @@ theme = 'PaperMod'
     url = "/about/"
     weight = 1
 
-  [[menu.main]]
+[[menu.main]]
     identifier = "projects"
     name = "Projects"
     url = "/projects/"
     weight = 2
 
-  [[menu.main]]
+[[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    weight = 3
+
+[[menu.main]]
     identifier = "resources"
     name = "Resources"
     url = "/resources/"
-    weight = 3
+    weight = 4
 
-  [[menu.main]]
+[[menu.main]]
     identifier = "contact"
     name = "Contact Me"
     url = "/contact/"
-    weight = 4
+    weight = 5
 
 [params]
   defaultTheme = "dark"
@@ -35,8 +41,8 @@ theme = 'PaperMod'
 
   [params.profileMode]
     enabled = true
-    title = "Dr Emma Baghurst"
-    subtitle = "Software Engineer in Fintech with a background in medicine."
+    title = "Emma Baghurst"
+    subtitle = "Software Engineer working in Financial Tech with a background in Medicine."
     imageUrl = "/images/profile.png"
     imageWidth = 270
     imageHeight = 270

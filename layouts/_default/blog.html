@@ -1,0 +1,49 @@
+{{- define "main" }}
+<div class="blog-container">
+    <div class="blog-main">
+        <header class="post-header">
+            <h1 class="post-title">{{ .Title }}</h1>
+        </header>
+
+        <aside class="blog-sidebar">
+            <div class="sidebar-section">
+                <h3 class="section-title">Categories</h3>
+                <div class="category-list">
+                    {{ range .Site.Taxonomies.categories }}
+                    <a href="{{ .Page.Permalink }}" class="language-badge {{ .Page.Title | lower }}">
+                        {{ .Page.Title }} <span class="category-count">({{ .Count }})</span>
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </aside>
+
+        <div class="posts-section">
+            <h3 class="section-title">Recent Articles</h3>
+            <div class="posts">
+                {{ range .Pages.ByDate.Reverse }}
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <h2>{{ .Title }}</h2>
+                    </header>
+                    <div class="entry-content">
+                        <p>{{ .Description }}</p>
+                    </div>
+                    <footer class="entry-footer">
+                        <time>{{ .Date.Format "January 2, 2006" }}</time>
+                        {{ with .Params.categories }}
+                        <div class="post-categories">
+                            {{ range . }}
+                            <span class="language-badge {{ . | lower }}">{{ . }}</span>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </footer>
+                    <a class="entry-link" href="{{ .Permalink }}"></a>
+                </article>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</div>
+{{- end }} 

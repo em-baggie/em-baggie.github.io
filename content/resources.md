@@ -1,6 +1,6 @@
 ---
 title: "Resources"
-layout: "about"
+layout: "generic"
 ---
  All of the resources below are ones I've used myself and found helpful in my coding journey. Given when I was initially learning to code I was balancing this alongside being a doctor full time, I really only stuck to resources that were completely free of charge and worth my time. I've continued with this mentality since. I'll try to update this page regularly.
 

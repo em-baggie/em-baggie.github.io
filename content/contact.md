@@ -1,4 +1,4 @@
 ---
 title: "Contact Me"
-layout: "single"
+layout: "contact"
 ---

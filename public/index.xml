@@ -6,13 +6,14 @@
     <description>Recent content on Emma Baghurst</description>
     <generator>Hugo -- 0.140.2</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
-      <link>http://localhost:1313/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/</guid>
-      <description></description>
+      <title>The Complicated World of Strings in Rust</title>
+      <link>http://localhost:1313/blog/the_complicated_world_of_strings_in_rust/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/the_complicated_world_of_strings_in_rust/</guid>
+      <description>Coming Soon!</description>
     </item>
     <item>
       <title>Contact Me</title>
@@ -26,9 +27,9 @@
       <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m an Associate Software Engineer at &lt;a href=&#34;https://zopa.com&#34;&gt;Zopa&lt;/a&gt;, with a background in medicine.&lt;/p&gt;
-&lt;p&gt;I trained at the University of Cambridge before working as a junior doctor in London. Whilst practicing medicine, I discovered my love for programming through various personal projects. After completing the &lt;a href=&#34;https://codefirstgirls.com/&#34;&gt;CodeFirstGirls&lt;/a&gt; software engineering course, kindly sponsored by Zopa, I transitioned into a career as a software engineer.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m an advocate of open source development and I&amp;rsquo;m particularly interested in contributing to open source tools which enhance processes and workflows within medicine and medical research. Currently, I&amp;rsquo;m learning Rust 🦀 and exploring its capabilities for building reliable, performant software through my open source &lt;a href=&#34;http://localhost:1313/projects/&#34;&gt;contributions&lt;/a&gt;. I&amp;rsquo;m part of the &lt;a href=&#34;https://www.meetup.com/women-in-rust/&#34;&gt;Women in Rust&lt;/a&gt; community, which is a great way to meet other women in the Rust community and learn from each other.&lt;/p&gt;</description>
+      <description>&lt;p&gt;I&amp;rsquo;m an Associate Software Engineer with a background in medicine.&lt;/p&gt;
+&lt;p&gt;I trained at the University of Cambridge before working as a junior doctor in London. Whilst practicing medicine, I discovered my love for programming through various personal projects. After completing the &lt;a href=&#34;https://codefirstgirls.com/&#34;&gt;CodeFirstGirls&lt;/a&gt; software engineering course, kindly sponsored by Zopa, I transitioned into a career as a Software Engineer.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m an advocate of open source development and I&amp;rsquo;m particularly interested in contributing to open source tools which enhance processes and workflows within medicine and biomedicine. Currently, I&amp;rsquo;m learning Rust 🦀 and exploring its capabilities for building reliable, performant software through my open source &lt;a href=&#34;http://localhost:1313/projects/&#34;&gt;contributions&lt;/a&gt;. I&amp;rsquo;m part of the &lt;a href=&#34;https://www.meetup.com/women-in-rust/&#34;&gt;Women in Rust&lt;/a&gt; community, which is a great way to meet other women in the Rust community and learn from each other. In my spare time, I continue to deepen my understanding of computer systems fundamentals to empower me to build more robust and efficient programs. Check out the things I&amp;rsquo;ve been learning &lt;a href=&#34;https://github.com/em-baggie/labs&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Resources</title>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Node.js on Emma Baghurst</title>
+    <link>http://localhost:51144/tags/node.js/</link>
+    <description>Recent content in Node.js on Emma Baghurst</description>
+    <generator>Hugo -- 0.140.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:51144/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenFresh</title>
+      <link>http://localhost:51144/projects/openfresh/</link>
+      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51144/projects/openfresh/</guid>
+      <description>An AI agent for streamlining grocery shopping</description>
+    </item>
+    <item>
+      <title>EchoCal</title>
+      <link>http://localhost:51144/projects/echocal/</link>
+      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:51144/projects/echocal/</guid>
+      <description>Real-time audible alerts for Google Calendar events</description>
+    </item>
+  </channel>
+</rss>

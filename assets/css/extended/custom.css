@@ -128,7 +128,7 @@ pre, code {
 
 .project-card p {
     margin: 0 0 1.5rem 0;
-    color: var(--secondary);
+    color: var(--primary);
 }
 
 .project-links {
@@ -155,14 +155,17 @@ pre, code {
     }
 }
 
+.page-header,
 .post-header {
-    margin: 15px auto 15px auto;
+    margin: 2rem auto var(--content-gap) auto;
+    text-align: center;
 }
 
+.page-header h1,
 .post-title {
-   font-size: 2rem;
-   text-align: center;
-   margin-bottom: 1rem;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0;
 }
 
 .language-badge {
@@ -172,8 +175,6 @@ pre, code {
     border-radius: var(--radius);
     font-size: 0.9rem;
     font-weight: 500;
-    margin-right: 0.5rem;
-    margin-bottom: 1rem;
 }
 
 .rust {
@@ -246,12 +247,12 @@ pre, code {
 
 .post-content li {
     margin: 0.5rem 0;
-    color: var(--secondary);
+    color: var(--primary);
 }
 
 .post-content p {
     margin: 1rem 0;
-    color: var(--secondary);
+    color: var(--primary);
 }
 
 @media (max-width: 768px) {
@@ -262,4 +263,184 @@ pre, code {
 
 #menu a span.active {
     color: #e8bafa;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.category-count {
+    opacity: 0.8;
+    font-size: 0.8em;
+    margin-left: 0.3rem;
+}
+
+/* Add category-specific colors */
+.language-badge.rust {
+    background: #DEA584;
+    color: #000;
+}
+
+.language-badge.web {
+    background: #61DAFB;
+    color: #000;
+}
+
+.language-badge.career {
+    background: #845EC2;
+    color: #fff;
+}
+
+.language-badge.technology {
+    background: #3178C6;
+    color: #fff;
+}
+
+.language-badge.medicine {
+    background: #FF6B6B;
+    color: #fff;
+}
+
+.language-badge.personal {
+    background: #FF9671;
+    color: #fff;
+}
+
+/* Make category badges clickable */
+.category-list .language-badge {
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.category-list .language-badge:hover {
+    opacity: 0.8;
+}
+
+.blog-container {
+    display: grid;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.post-entry,
+.post-entry.tag-entry {
+    background: var(--entry);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.2s ease;
+    border: 1px solid var(--border);
+}
+
+.post-entry:hover,
+.post-entry.tag-entry:hover {
+    transform: translateY(-2px);
+}
+
+.entry-header h2,
+.entry-header h2.entry-hint-parent {
+    margin: 0 0 1rem 0;
+    font-size: 1.4rem;
+    color: var(--primary);
+    text-align: left;
+}
+
+.entry-content,
+.post-entry.tag-entry .entry-content {
+    margin-bottom: 1rem;
+    color: var(--primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.entry-footer,
+.post-entry.tag-entry .entry-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+.entry-footer time,
+.post-entry.tag-entry .entry-footer time {
+    color: var(--secondary);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.post-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.terms-tags {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.terms-tags li {
+    display: inline-block;
+    margin: 0.5rem;
+}
+
+.terms-tags a {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius);
+    background: var(--entry);
+    color: var(--primary);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.terms-tags a:hover {
+    color: #e8bafa;
+}
+
+.terms-tags sup {
+    color: var(--secondary);
+    margin-left: 0.3rem;
+}
+
+.post-single .post-description {
+    text-align: left;
+    margin: 10px 0;
+    color: var(--primary);
 }
