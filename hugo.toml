@@ -31,7 +31,10 @@ theme = 'PaperMod'
 [params]
   defaultTheme = "dark"
   comments = true
-  assets.disableFingerprinting = true
+
+  [params.assets]
+    disableFingerprinting = true
+    customCSS = ["css/custom.css"]
 
   [params.profileMode]
     enabled = true
@@ -52,9 +55,6 @@ theme = 'PaperMod'
     name = "linkedin"
     url = "https://www.linkedin.com/in/ebaghurst/"
     
-
-  [params.assets]
-    customCSS = ["css/custom.css"]
 
 [params.label]
   text = "Emma Baghurst"
