@@ -31,6 +31,7 @@ theme = 'PaperMod'
 [params]
   defaultTheme = "dark"
   comments = true
+  assets.disableFingerprinting = true
 
   [params.profileMode]
     enabled = true
@@ -62,11 +63,12 @@ theme = 'PaperMod'
 
 [markup]
   [markup.highlight]
-    # Use the "monokai" theme for syntax highlighting
+    noClasses = true
     style = "monokai"
-    lineNos = true
-    noClasses = false
-    guessSyntax = true
-    codeFences = true
     tabWidth = 4
+    codeFences = true
+    guessSyntax = false
+    lineNos = false
+    lineNumbersInTable = false
+    # Available styles: https://xyproto.github.io/splash/docs/
 

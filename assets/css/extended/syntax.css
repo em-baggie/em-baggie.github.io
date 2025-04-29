@@ -1,0 +1,48 @@
+/* Code block styling */
+.highlight {
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: 4px;
+    background: #272822 !important;
+}
+
+.highlight pre {
+    margin: 0;
+    padding: 0;
+    background-color: transparent !important;
+}
+
+.highlight code {
+    color: #f8f8f2;
+    background: transparent !important;
+    font-family: 'Monaco', 'Consolas', 'Menlo', monospace;
+    font-size: 0.9em;
+}
+
+/* Inline code styling */
+code:not([class]) {
+    background: rgba(175, 184, 193, 0.2);
+    color: inherit;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-family: 'Monaco', 'Consolas', 'Menlo', monospace;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] code:not([class]) {
+    background: rgba(175, 184, 193, 0.1);
+}
+
+/* Code block language badge */
+.highlight::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.2em 0.5em;
+    font-size: 0.8em;
+    color: #abb2bf;
+    background: #3e4451;
+    border-radius: 0 4px 0 4px;
+} 
