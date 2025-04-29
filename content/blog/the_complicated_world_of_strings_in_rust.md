@@ -2,7 +2,7 @@
 title: "The Complicated World of Strings in Rust"
 date: 2025-04-29
 description: "A comprehensive guide to understanding the most common string types in Rust, their memory representations and how they are encoded."
-author: "Author: Emma Baghurst · Edited by: Caroline Morton"
+author: "Emma Baghurst · Edited by: Caroline Morton"
 categories: ["Rust"]
 comments: true
 ---
