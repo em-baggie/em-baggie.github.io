@@ -166,7 +166,7 @@ let slice_from_heap: &str = &hey[..];
 
 `slice_from_literal` is assigned to the string literal "hey". `slice_from_heap` is assigned to a slice of `heap_string`, which is a reference to the string data inside the `String` object. This means that `slice_from_heap` can efficiently gain read-only access to the string data from `heap_string`.
 
-Note that Rust does not allow direct integer indexing of strings. Consider the following example:
+Note that Rust does not allow direct integer indexing of strings - consider the following example:
 ```rust
 let word = "你好吗".to_string(); 
 let shorter_word = &word[1..];
