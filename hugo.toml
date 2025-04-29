@@ -60,3 +60,13 @@ theme = 'PaperMod'
   icon = "/img/logo.png"
   iconHeight = 32
 
+[markup]
+  [markup.highlight]
+    # Use the "monokai" theme for syntax highlighting
+    style = "monokai"
+    lineNos = true
+    noClasses = false
+    guessSyntax = true
+    codeFences = true
+    tabWidth = 4
+
