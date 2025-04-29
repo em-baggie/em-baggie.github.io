@@ -71,8 +71,3 @@ theme = 'PaperMod'
     lineNos = false
     lineNumbersInTable = false
 
-  # Add custom styles for plain code blocks
-  [markup.highlight.style.plaintext]
-    background = "#272822"  # Same as monokai background
-    color = "#75715e"      # Grey color from monokai theme
-

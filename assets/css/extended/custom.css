@@ -512,3 +512,8 @@ body.dark .terms-tags a:hover {
     color: var(--hover-color-dark);
 }
 
+/* Style for plain code blocks */
+.highlight:not([class*="language-"]) code {
+    color: #75715e !important;
+}
+
