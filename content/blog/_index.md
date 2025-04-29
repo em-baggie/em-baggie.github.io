@@ -1,4 +1,4 @@
 ---
 title: "Blog"
-description: "My thoughts and articles on software engineering, medicine, and technology"
+description: "My thoughts and articles on various software engineering topics"
 --- 

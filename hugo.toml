@@ -23,12 +23,6 @@ theme = 'PaperMod'
     weight = 3
 
 [[menu.main]]
-    identifier = "resources"
-    name = "Resources"
-    url = "/resources/"
-    weight = 4
-
-[[menu.main]]
     identifier = "contact"
     name = "Contact Me"
     url = "/contact/"
@@ -36,8 +30,7 @@ theme = 'PaperMod'
 
 [params]
   defaultTheme = "dark"
-  disableThemeToggle = true
-
+  comments = true
 
   [params.profileMode]
     enabled = true
@@ -50,7 +43,6 @@ theme = 'PaperMod'
     buttons = [
       { name = "Check out my projects!", url = "/projects/" },
     ]
-
 
   [[params.socialIcons]]
     name = "github"
