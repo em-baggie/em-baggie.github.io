@@ -517,7 +517,7 @@ body.dark .terms-tags a:hover {
     margin: 1em 0;
     border-radius: var(--radius);
     overflow: hidden;
-    background-color: var(--entry) !important;
+    background-color: #f5f5f5 !important;
 }
 
 .highlight pre {
@@ -526,7 +526,8 @@ body.dark .terms-tags a:hover {
     overflow-x: auto;
     white-space: pre !important;
     font-family: 'Roboto Mono', monospace !important;
-    background-color: var(--entry) !important;
+    background-color: #f5f5f5 !important;
+    color: #24273a;
 }
 
 /* Ensure all code uses monospace and preserves whitespace */
@@ -539,39 +540,52 @@ body.dark .terms-tags a:hover {
     word-break: normal !important;
     tab-size: 4 !important;
     hyphens: none !important;
-    background-color: var(--entry) !important;
+    background-color: #f5f5f5 !important;
+    color: #24273a;
 }
 
 /* Dark mode overrides */
 body.dark .highlight {
-    background-color: #24273a !important;
+    background-color: #1e1e2e !important;
 }
 
 body.dark .highlight pre {
-    background-color: #24273a !important;
-    color: #cad3f5;
+    background-color: #1e1e2e !important;
+    color: #cdd6f4;
 }
 
 body.dark .highlight pre code {
-    background-color: #24273a !important;
+    background-color: #1e1e2e !important;
+    color: #cdd6f4;
 }
 
 /* Rust code specific styling */
 .highlight.language-rust {
-    background-color: var(--entry) !important;
+    background-color: #f5f5f5 !important;
+}
+
+.highlight.language-rust pre {
+    background-color: #f5f5f5 !important;
+    color: #24273a;
+}
+
+.highlight.language-rust pre code {
+    background-color: #f5f5f5 !important;
+    color: #24273a;
 }
 
 body.dark .highlight.language-rust {
-    background-color: #24273a !important;
+    background-color: #1e1e2e !important;
 }
 
 body.dark .highlight.language-rust pre {
-    background-color: #24273a !important;
-    color: #cad3f5;
+    background-color: #1e1e2e !important;
+    color: #cdd6f4;
 }
 
 body.dark .highlight.language-rust pre code {
-    background-color: #24273a !important;
+    background-color: #1e1e2e !important;
+    color: #cdd6f4;
 }
 
 /* Plain text and error message styling */
@@ -581,7 +595,16 @@ body.dark .highlight.language-rust pre code {
 .highlight.language-console,
 .highlight.language-shell,
 .highlight.language-output {
-    background-color: var(--entry) !important;
+    background-color: #f5f5f5 !important;
+}
+
+.highlight:not([class*="language-"]) pre,
+.highlight.language-text pre,
+.highlight.language-plaintext pre,
+.highlight.language-console pre,
+.highlight.language-shell pre,
+.highlight.language-output pre {
+    color: #24273a;
 }
 
 body.dark .highlight:not([class*="language-"]),
@@ -590,7 +613,16 @@ body.dark .highlight.language-plaintext,
 body.dark .highlight.language-console,
 body.dark .highlight.language-shell,
 body.dark .highlight.language-output {
-    background-color: #24273a !important;
+    background-color: #1e1e2e !important;
+}
+
+body.dark .highlight:not([class*="language-"]) pre,
+body.dark .highlight.language-text pre,
+body.dark .highlight.language-plaintext pre,
+body.dark .highlight.language-console pre,
+body.dark .highlight.language-shell pre,
+body.dark .highlight.language-output pre {
+    color: #cdd6f4;
 }
 
 /* Additional fixes for text wrapping and spacing */
@@ -600,21 +632,25 @@ body.dark .highlight.language-output {
     word-wrap: normal !important;
     word-break: keep-all !important;
     tab-size: 4 !important;
-    background-color: var(--entry) !important;
+    background-color: #f5f5f5 !important;
+    color: #24273a;
 }
 
 body.dark .post-content pre {
-    background-color: #24273a !important;
+    background-color: #1e1e2e !important;
+    color: #cdd6f4;
 }
 
 .post-content code {
     white-space: pre !important;
     word-spacing: normal !important;
     tab-size: 4 !important;
-    background-color: var(--entry) !important;
+    background-color: #f5f5f5 !important;
+    color: #24273a;
 }
 
 body.dark .post-content code {
-    background-color: #24273a !important;
+    background-color: #1e1e2e !important;
+    color: #cdd6f4;
 }
 
