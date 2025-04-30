@@ -49,7 +49,7 @@ UTF-8 is the **encoding system** which takes each code point defined by unicode 
 
 In Rust, the two most commonly used string types are `String` and `&str`. Below are some examples of how they can be used - you may recognise similar string functionalities that exist in most programming languages.
 
-```
+```markdown
 // declaring strings
 let wir_str = "Women In Rust";
 let wir_string = String::from("Women In Rust");
