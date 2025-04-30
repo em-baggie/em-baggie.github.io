@@ -512,12 +512,7 @@ body.dark .terms-tags a:hover {
     color: var(--hover-color-dark);
 }
 
-/* Style for plain code blocks */
-.highlight:not([class*="language-"]) code {
-    color: #75715e !important;
-}
-
-/* Code block styling - base styles for all code blocks */
+/* Base styles for all code blocks */
 .highlight {
     margin: 1em 0;
     border-radius: var(--radius);
@@ -529,9 +524,10 @@ body.dark .terms-tags a:hover {
     margin: 0;
     overflow-x: auto;
     white-space: pre !important;
+    font-family: 'Roboto Mono', monospace !important;
 }
 
-/* Consistent styling for all code */
+/* Ensure all code uses monospace and preserves whitespace */
 .highlight pre code {
     font-family: 'Roboto Mono', monospace !important;
     font-size: 0.9em;
@@ -540,9 +536,10 @@ body.dark .terms-tags a:hover {
     word-spacing: normal !important;
     word-break: normal !important;
     tab-size: 4 !important;
+    hyphens: none !important;
 }
 
-/* Specific styling for Rust code */
+/* Rust code specific styling */
 .highlight.language-rust {
     background-color: #24273a !important;
 }
@@ -551,30 +548,35 @@ body.dark .terms-tags a:hover {
     color: #cad3f5;
 }
 
-/* Style error messages and command output */
+/* Plain text and error message styling */
+.highlight:not([class*="language-"]),
 .highlight.language-text,
+.highlight.language-plaintext,
 .highlight.language-console,
 .highlight.language-shell,
-.highlight.language-output,
-.highlight.language-plaintext {
+.highlight.language-output {
     background-color: #24273a !important;
 }
 
+.highlight:not([class*="language-"]) pre,
 .highlight.language-text pre,
+.highlight.language-plaintext pre,
 .highlight.language-console pre,
 .highlight.language-shell pre,
-.highlight.language-output pre,
-.highlight.language-plaintext pre {
+.highlight.language-output pre {
     color: #cad3f5;
     font-family: 'Roboto Mono', monospace !important;
     white-space: pre !important;
 }
 
-/* Error text specific styling */
-.highlight.language-text .err,
-.highlight.language-console .err,
-.highlight.language-shell .err {
-    color: #ed8796;
+/* Error text styling */
+.highlight:not([class*="language-"]) code,
+.highlight.language-text code,
+.highlight.language-plaintext code,
+.highlight.language-console code,
+.highlight.language-shell code,
+.highlight.language-output code {
+    color: #ed8796 !important;
     white-space: pre !important;
 }
 
@@ -587,22 +589,18 @@ body.dark .highlight pre {
     color: #cad3f5;
 }
 
-/* Override any theme specific styles that might interfere */
-.highlight:not([class*="language-"]) code {
-    color: inherit !important;
-    white-space: pre !important;
-}
-
 /* Additional fixes for text wrapping and spacing */
 .post-content pre {
     white-space: pre !important;
     overflow-x: auto;
     word-wrap: normal !important;
     word-break: keep-all !important;
+    tab-size: 4 !important;
 }
 
 .post-content code {
     white-space: pre !important;
     word-spacing: normal !important;
+    tab-size: 4 !important;
 }
 
