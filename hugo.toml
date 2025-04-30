@@ -29,7 +29,8 @@ theme = 'PaperMod'
     weight = 5
 
 [params]
-  defaultTheme = "dark"
+  defaultTheme = "light"
+  disableThemeToggle = true
   comments = true
 
   [params.assets]

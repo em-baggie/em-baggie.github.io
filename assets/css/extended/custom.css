@@ -1,25 +1,33 @@
 :root {
     --sys-font: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
-    --hover-color-dark: #e8bafa;
-    --hover-color-light: #4f076c;
+    --hover-color: #4f076c;
 }
 
 body {
-    font-family: var(--sys-font)
+    font-family: var(--sys-font);
+    background: #fff !important;
+    color: #24273a !important;
 }
 
+/* Code font styling for all code elements */
 pre, code {
-    font-family: 'Roboto Mono', monospace
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
+    font-size: 0.95rem !important;
 }
 
 #menu a span {
     transition: color 0.3s ease;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 #menu a:hover span {
-    color: var(--hover-color-light);
+    color: var(--hover-color);
+}
+
+#menu a[aria-current="page"] span {
+    color: var(--hover-color);
+    font-weight: bold;
 }
 
 .social-icons a svg {
@@ -30,7 +38,7 @@ pre, code {
 }
 
 .social-icons a:hover svg {
-    color: var(--hover-color-light);
+    color: var(--hover-color);
 }
 
 .profile .profile_inner {
@@ -43,7 +51,7 @@ pre, code {
 }
 
 .button:hover {
-    color: var(--hover-color-light);
+    color: var(--hover-color);
 }
 
 .contact-form {
@@ -86,7 +94,7 @@ pre, code {
 }
 
 .submit-button:hover {
-    color: var(--hover-color-light);
+    color: var(--hover-color);
 }
 
 .success-message {
@@ -151,7 +159,7 @@ pre, code {
 }
 
 .project-link:hover {
-    color: var(--hover-color-light);
+    color: var(--hover-color);
 }
 
 @media (max-width: 768px) {
@@ -272,12 +280,7 @@ pre, code {
 }
 
 #menu a span.active {
-    color: var(--hover-color-light);
-}
-
-/* Dark mode override for active state */
-body.dark #menu a span.active {
-    color: var(--hover-color-dark);
+    color: var(--hover-color);
 }
 
 .category-list {
@@ -447,7 +450,7 @@ body.dark #menu a span.active {
 }
 
 .terms-tags a:hover {
-    color: var(--hover-color-light);
+    color: var(--hover-color);
 }
 
 .terms-tags sup {
@@ -462,146 +465,85 @@ body.dark #menu a span.active {
     display: none;
 }
 
-/* Light mode is the default */
-#menu a:hover span {
-    color: var(--hover-color-light);
-}
-
-.social-icons a:hover svg {
-    color: var(--hover-color-light);
-}
-
-.button:hover {
-    color: var(--hover-color-light);
-}
-
-.submit-button:hover {
-    color: var(--hover-color-light);
-}
-
-.project-link:hover {
-    color: var(--hover-color-light);
-}
-
-.terms-tags a:hover {
-    color: var(--hover-color-light);
-}
-
-/* Dark mode overrides */
-body.dark #menu a:hover span {
-    color: var(--hover-color-dark);
-}
-
-body.dark .social-icons a:hover svg {
-    color: var(--hover-color-dark);
-}
-
-body.dark .button:hover {
-    color: var(--hover-color-dark);
-}
-
-body.dark .submit-button:hover {
-    color: var(--hover-color-dark);
-}
-
-body.dark .project-link:hover {
-    color: var(--hover-color-dark);
-}
-
-body.dark .terms-tags a:hover {
-    color: var(--hover-color-dark);
-}
-
-/* Base styles for all code blocks - same in both light and dark mode */
-.highlight {
-    margin: 1em 0;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background-color: #2a2a2a !important;
-}
-
-.highlight pre {
-    padding: 1em;
-    margin: 0;
-    overflow-x: auto;
-    white-space: pre !important;
-    font-family: 'Roboto Mono', monospace !important;
-    background-color: #2a2a2a !important;
-    color: #cdd6f4;
-}
-
-/* Ensure all code uses monospace and preserves whitespace */
-.highlight pre code {
-    font-family: 'Roboto Mono', monospace !important;
-    font-size: 0.9em;
-    line-height: 1.5;
-    white-space: pre !important;
-    word-spacing: normal !important;
-    word-break: normal !important;
-    tab-size: 4 !important;
-    hyphens: none !important;
-    background-color: #2a2a2a !important;
-    color: #cdd6f4;
-}
-
-/* Rust code specific styling - same in both modes */
-.highlight.language-rust {
-    background-color: #2a2a2a !important;
-}
-
-.highlight.language-rust pre {
-    background-color: #2a2a2a !important;
-    color: #cdd6f4;
-}
-
-.highlight.language-rust pre code {
-    background-color: #2a2a2a !important;
-    color: #cdd6f4;
-}
-
-/* Plain text and error message styling - same in both modes */
-.highlight:not([class*="language-"]),
-.highlight.language-text,
-.highlight.language-plaintext,
-.highlight.language-console,
-.highlight.language-shell,
-.highlight.language-output {
-    background-color: #2a2a2a !important;
-}
-
-.highlight:not([class*="language-"]) pre,
-.highlight.language-text pre,
-.highlight.language-plaintext pre,
-.highlight.language-console pre,
-.highlight.language-shell pre,
-.highlight.language-output pre {
-    color: #cdd6f4;
-}
-
-/* Additional fixes for text wrapping and spacing - same in both modes */
-.post-content pre {
-    white-space: pre !important;
-    overflow-x: auto;
-    word-wrap: normal !important;
-    word-break: keep-all !important;
-    tab-size: 4 !important;
-    background-color: #2a2a2a !important;
-    color: #cdd6f4;
-}
-
-.post-content code {
-    white-space: pre !important;
-    word-spacing: normal !important;
-    tab-size: 4 !important;
-    background-color: #2a2a2a !important;
-    color: #cdd6f4;
-}
-
 /* Inline code styling */
-code:not(.highlight code) {
-    background-color: #2a2a2a !important;
-    color: #ffffff !important;
-    padding: 2px 5px;
-    border-radius: 3px;
+:not(pre) > code {
+    background: #f5f5f5 !important;
+    color: var(--primary) !important;
+    padding: 0.2em 0.4em !important;
+    border-radius: 4px !important;
+}
+
+/* Code block styling - applies to all code blocks including Rust */
+.post-content .highlight,
+.post-content pre,
+.post-content code[class*="language-"],
+.post-content pre[class*="language-"],
+.post-content .message,
+.post-content .error,
+.post-content .warning,
+.post-content .info {
+    background: #f5f5f5 !important;
+    margin: 1.5em 0 !important;
+    padding: 1.2em !important;
+    border-radius: 8px !important;
+    overflow-x: auto !important;
+    color: var(--primary) !important;
+}
+
+/* Ensure all elements within code blocks have consistent styling */
+.post-content .highlight pre,
+.post-content .highlight code,
+.post-content .highlight span,
+.post-content pre code,
+.post-content pre span,
+.post-content code[class*="language-"] *,
+.post-content pre[class*="language-"] *,
+.post-content .message *,
+.post-content .error *,
+.post-content .warning *,
+.post-content .info * {
+    background: transparent !important;
+    color: var(--primary) !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
+}
+
+/* Remove any syntax highlighting overrides */
+.language-rust,
+.language-rust *,
+.hljs,
+.hljs * {
+    color: var(--primary) !important;
+    background: transparent !important;
+}
+
+.language-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Post meta styling */
+.post-meta {
+    text-align: left;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.post-date {
+    color: var(--secondary);
+    font-size: 1rem;
+}
+
+.post-author {
+    color: var(--secondary);
+    font-size: 0.95rem;
 }
 

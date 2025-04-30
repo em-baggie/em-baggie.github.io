@@ -1,8 +1,8 @@
 ---
 title: "Essential Programming Resources For Beginners"
 date: 2025-01-25
+author: "Emma Baghurst"
 description: "A collection of free, high-quality learning resources for programming, computer systems, and Rust."
-author: "Author: Emma Baghurst"
 categories: ["General"]
 ---
 

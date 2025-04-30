@@ -1,5 +1,5 @@
 ---
-title: "The Complicated World of Strings in Rust"
+title: "The Complicated World Of Strings In Rust"
 date: 2025-04-29
 description: "A comprehensive guide to understanding the most common string types in Rust, their memory representations and how they are encoded."
 author: "Emma Baghurst · Edited by: Caroline Morton"
@@ -49,7 +49,7 @@ UTF-8 is the **encoding system** which takes each code point defined by unicode 
 
 In Rust, the two most commonly used string types are `String` and `&str`. Below are some examples of how they can be used - you may recognise similar string functionalities that exist in most programming languages.
 
-```rust
+```
 // declaring strings
 let wir_str = "Women In Rust";
 let wir_string = String::from("Women In Rust");
@@ -111,7 +111,7 @@ This is a fat pointer, which contains a pointer to the string data on the heap, 
 
 We can demonstrate the `String` structure using code:
 
-```rust
+```
 let hello = String::from("hi!");
 
 // prints the stack memory address where the String struct is stored
@@ -123,7 +123,7 @@ println!("String data address: {:p}", hello.as_ptr());
 
 The output of the above looks something like this:
 
-```output
+```
 String struct address: 0x7ffc51f2cb88
 String data address: 0x5f0232170b10
 ```
@@ -139,7 +139,7 @@ This is a reference to a `String`, which points to the `String` struct stored on
 ### str
 ![String literal](/images/str.png)
 *Figure 5: Diagram showing how the `str` type is represented in memory.*
-```rust
+```
 let my_string: &str = "hi!";
 ```
 This is a string literal, consisting of a sequence of bytes that represent characters forming text, stored in the read-only data section of memory during compilation. String literals are immutable by default, meaning they cannot be modified after they are created.
@@ -156,7 +156,7 @@ Figure 6 shows two examples of `&str`, which consist of a pointer which points t
 
 Consider the following code and how it relates to the above diagram:
 
-```rust
+```
 // Points to string literal stored in the read-only data
 let slice_from_literal: &str = "hey"; 
 
@@ -167,23 +167,23 @@ let slice_from_heap: &str = &hey[..];
 `slice_from_literal` is assigned to the string literal "hey". `slice_from_heap` is assigned to a slice of `heap_string`, which is a reference to the string data inside the `String` object. This means that `slice_from_heap` can efficiently gain read-only access to the string data from `heap_string`.
 
 Note that Rust does not allow direct integer indexing of strings - consider the following example:
-```rust
+```
 let word = "你好吗".to_string(); 
 let shorter_word = &word[1..];
 ```
 This code attempts to access the second character onwards and assign it to `shorter_word`. However, if you try running this code you will get the following **error**:
-```output
+```
 byte index 1 is not a char boundary; it is inside '你' (bytes 0..3) of `你好吗`
 ```
 Recall that Rust uses UTF-8 to encode characters, and non-ASCII characters (such as the Mandarin characters above) are encoded using multiple bytes. This code actually attempts to access the second byte rather than the second character, therefore as the **error** message explains, it tries to slice within the first character which Rust does not allow.
 
 Consider a second example:
-```rust
+```
 let a: String = String::from("hello");
 let b: &str = a[1];
 ```
 Even though all of the characters in "hello" are ASCII characters and encoded using 1 byte, and therefore there is no risk of indexing in the middle of a character, Rust still does not allow this. If you try running this you will get the following **error**:
-```output
+```
 The type `str` cannot be indexed by `{integer}`
 ```
 So Rust protects us from making any unsafe assumptions about byte boundaries, and disallows direct integer indexing. To access characters or bytes, instead you can use the `.chars()` or `.bytes()` method respectively.
@@ -201,13 +201,13 @@ Below are some rules to keep in mind when thinking about ownership in Rust:
 Let's go through some examples to illustrate the above.
 
 ### Example 1: scopes
-```rust
+```
 {
 let s = String::from("I love rust!");
 }
 ```
 In the above code, `s` owns the `String` created with "I love rust!" (**rule 1**). `s` is created within a scope defined by the curly brackets. As soon as the scope ends, after the closing curly bracket, `s` goes out of scope and Rust automatically drops the value it owns, and its associated memory is freed (**rule 2**). This means after the block ends, `s` is no longer accessible, and attempts to use `s` outside its scope will result in an **error** at compile-time:
-```output
+```
 error[E0425]: cannot find value `s` in this scope
    println!("{}", s);
                        ^
@@ -220,13 +220,13 @@ help: the binding `s` is available in a different scope in the same function
 ```
 
 ### Example 2: reassignment
-```rust
+```
 let mut string_example = String::from("hey");
 println!("String struct address: {:p}", &string_example);
 println!("String data address: {:p}", string_example.as_ptr());
 ```
 In the first line, a mutable `String` is defined. We then print the struct and string data addresses for `string_example`. If this is run, the result would look something like this:
-```output
+```
 String struct address: 0x7ffd5b428610
 String data address: 0x611b31bbeb10
 ```
@@ -235,13 +235,13 @@ This is also shown in the diagram below:
 *Figure 7: Diagram showing the initial assignment of the String*
 
 In the code below, `string_example` is re-assigned to a different `String`. Note that when the struct and string data addresses are printed again, the address of the string struct does not change, but the address of the data it points to does change.
-```rust
+```
 string_example = String::from("hi!");
 println!("String struct address: {:p}", &string_example);
 println!("String data address: {:p}", string_example.as_ptr());
 ```
 The output would look something like this:
-```output
+```
 String struct address: 0x7ffd5b428610
 String data address: 0x611b31bbeb30
 ```
@@ -251,7 +251,7 @@ Given that there is no longer any owner of the first `String`, it is dropped and
 *Figure 8: Diagram showing reassignment and dropping of the previous value when a variable is reassigned.*
 
 ### Example 3: ownership transfer
-```rust
+```
 Let first_owner = String::from("hi!");
 let second_owner = first_owner;
 ```
@@ -262,10 +262,10 @@ In this example, `first_owner` is initially the single owner of the `String` "hi
 *Figure 9: Diagram showing ownership transfer from one variable to another.*
 
 If you were to try to subsequently access `first_owner`, you would get a compile-time error:
-```rust
+```
 let accessing_first_owner = first_owner.push_str(" how are you?");
 ```
-```output
+```
 error[E0382]: borrow of moved value: `first_owner`
 let first_owner = String::from("hi!");
 move occurs because `first_string` has type `String`, which does not implement the `Copy` trait
@@ -281,7 +281,7 @@ let second_owner = first_owner.clone();
 ### Example 4: cloning
 Note that the "help" part of the **error** message above in Example 3 indicates how we can duplicate the underlying string data on the heap so that both `first_owner` and `second_owner` can own independent copies of the same data. This can be done using the `clone()` method:
 
-```rust
+```
 let second_owner = first_owner.clone();
 ```
 Below is a diagram that shows what happens in memory when cloning occurs. Note that the **error** message in Example 3 recommended "consider cloning the value if the performance cost is acceptable." This refers to the fact that cloning creates two separate copies of the string on the heap, which uses up more memory and can have a performance cost because of the need to duplicate the data. Therefore, while cloning can be useful, it should be used carefully, especially when dealing with large data.
