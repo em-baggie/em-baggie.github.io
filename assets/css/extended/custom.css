@@ -512,12 +512,12 @@ body.dark .terms-tags a:hover {
     color: var(--hover-color-dark);
 }
 
-/* Base styles for all code blocks - consistent in both light and dark mode */
+/* Base styles for all code blocks */
 .highlight {
     margin: 1em 0;
     border-radius: var(--radius);
     overflow: hidden;
-    background-color: #24273a !important;
+    background-color: var(--entry) !important;
 }
 
 .highlight pre {
@@ -526,8 +526,7 @@ body.dark .terms-tags a:hover {
     overflow-x: auto;
     white-space: pre !important;
     font-family: 'Roboto Mono', monospace !important;
-    background-color: #24273a !important;
-    color: #cad3f5;
+    background-color: var(--entry) !important;
 }
 
 /* Ensure all code uses monospace and preserves whitespace */
@@ -540,33 +539,57 @@ body.dark .terms-tags a:hover {
     word-break: normal !important;
     tab-size: 4 !important;
     hyphens: none !important;
+    background-color: var(--entry) !important;
+}
+
+/* Dark mode overrides */
+body.dark .highlight {
+    background-color: #24273a !important;
+}
+
+body.dark .highlight pre {
     background-color: #24273a !important;
     color: #cad3f5;
 }
 
-/* Remove dark mode overrides since we want consistent styling */
-/* Rust code specific styling - same in both modes */
+body.dark .highlight pre code {
+    background-color: #24273a !important;
+}
+
+/* Rust code specific styling */
 .highlight.language-rust {
+    background-color: var(--entry) !important;
+}
+
+body.dark .highlight.language-rust {
     background-color: #24273a !important;
 }
 
-.highlight.language-rust pre {
+body.dark .highlight.language-rust pre {
     background-color: #24273a !important;
     color: #cad3f5;
 }
 
-.highlight.language-rust pre code {
+body.dark .highlight.language-rust pre code {
     background-color: #24273a !important;
-    color: #cad3f5;
 }
 
-/* Plain text and error message styling - same in both modes */
+/* Plain text and error message styling */
 .highlight:not([class*="language-"]),
 .highlight.language-text,
 .highlight.language-plaintext,
 .highlight.language-console,
 .highlight.language-shell,
 .highlight.language-output {
+    background-color: var(--entry) !important;
+}
+
+body.dark .highlight:not([class*="language-"]),
+body.dark .highlight.language-text,
+body.dark .highlight.language-plaintext,
+body.dark .highlight.language-console,
+body.dark .highlight.language-shell,
+body.dark .highlight.language-output {
     background-color: #24273a !important;
 }
 
@@ -577,15 +600,21 @@ body.dark .terms-tags a:hover {
     word-wrap: normal !important;
     word-break: keep-all !important;
     tab-size: 4 !important;
+    background-color: var(--entry) !important;
+}
+
+body.dark .post-content pre {
     background-color: #24273a !important;
-    color: #cad3f5;
 }
 
 .post-content code {
     white-space: pre !important;
     word-spacing: normal !important;
     tab-size: 4 !important;
+    background-color: var(--entry) !important;
+}
+
+body.dark .post-content code {
     background-color: #24273a !important;
-    color: #cad3f5;
 }
 
