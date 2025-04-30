@@ -13,6 +13,8 @@ body {
 pre, code {
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
     font-size: 0.95rem !important;
+    tab-size: 4 !important;
+    -moz-tab-size: 4 !important;
 }
 
 #menu a span {
@@ -488,6 +490,11 @@ pre, code {
     border-radius: 8px !important;
     overflow-x: auto !important;
     color: var(--primary) !important;
+    white-space: pre !important;
+    word-wrap: normal !important;
+    word-break: normal !important;
+    tab-size: 4 !important;
+    -moz-tab-size: 4 !important;
 }
 
 /* Ensure all elements within code blocks have consistent styling */
@@ -508,6 +515,11 @@ pre, code {
     margin: 0 !important;
     padding: 0 !important;
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
+    white-space: pre !important;
+    word-wrap: normal !important;
+    word-break: normal !important;
+    tab-size: 4 !important;
+    -moz-tab-size: 4 !important;
 }
 
 /* Remove any syntax highlighting overrides */
@@ -517,6 +529,9 @@ pre, code {
 .hljs * {
     color: var(--primary) !important;
     background: transparent !important;
+    white-space: pre !important;
+    word-wrap: normal !important;
+    word-break: normal !important;
 }
 
 .language-badge {
