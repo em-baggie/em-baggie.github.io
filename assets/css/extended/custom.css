@@ -546,16 +546,16 @@ body.dark .terms-tags a:hover {
 
 /* Dark mode overrides */
 body.dark .highlight {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
 }
 
 body.dark .highlight pre {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
     color: #cdd6f4;
 }
 
 body.dark .highlight pre code {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
     color: #cdd6f4;
 }
 
@@ -575,16 +575,16 @@ body.dark .highlight pre code {
 }
 
 body.dark .highlight.language-rust {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
 }
 
 body.dark .highlight.language-rust pre {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
     color: #cdd6f4;
 }
 
 body.dark .highlight.language-rust pre code {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
     color: #cdd6f4;
 }
 
@@ -613,7 +613,7 @@ body.dark .highlight.language-plaintext,
 body.dark .highlight.language-console,
 body.dark .highlight.language-shell,
 body.dark .highlight.language-output {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
 }
 
 body.dark .highlight:not([class*="language-"]) pre,
@@ -637,7 +637,7 @@ body.dark .highlight.language-output pre {
 }
 
 body.dark .post-content pre {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
     color: #cdd6f4;
 }
 
@@ -650,7 +650,7 @@ body.dark .post-content pre {
 }
 
 body.dark .post-content code {
-    background-color: #1e1e2e !important;
+    background-color: #2a2a2a !important;
     color: #cdd6f4;
 }
 
