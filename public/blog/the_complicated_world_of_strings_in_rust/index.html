@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>The Complicated World Of Strings In Rust | Emma Baghurst</title>
+<meta name="keywords" content="">
+<meta name="description" content="A comprehensive guide to understanding the most common string types in Rust, their memory representations and how they are encoded.">
+<meta name="author" content="Emma Baghurst · Edited by: Caroline Morton">
+<link rel="canonical" href="http://localhost:1313/blog/the_complicated_world_of_strings_in_rust/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/the_complicated_world_of_strings_in_rust/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Emma Baghurst (Alt + H)">
+                <img src="http://localhost:1313/img/logo.png" alt="" aria-label="logo"
+                    height="32">Emma Baghurst</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projects/" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/contact/" title="Contact Me">
+                    <span>Contact Me</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      The Complicated World Of Strings In Rust
+    </h1>
+
+    <div class="post-meta">
+      <div class="post-date">April 29, 2025</div>
+      <div class="post-author">Emma Baghurst · Edited by: Caroline Morton</div>
+    </div>
+    <div class="post-description">
+      A comprehensive guide to understanding the most common string types in Rust, their memory representations and how they are encoded.
+    </div>
+  </header> 
+  <div class="post-content"><p>String types exist as a means to represent text. Rust string types are more complicated compared to other languages, primarily because Rust forces the programmer to consider more of the underlying implementation details of strings when writing code, rather than abstracting it away. This is due to Rust&rsquo;s emphasis on memory-safety. This article aims to explain the basics of strings in detail and where relevant clear diagrams will be used to help illustrate the internal structure of strings and to simplify complex concepts.</p>
+<h2 id="contents">Contents<a hidden class="anchor" aria-hidden="true" href="#contents">#</a></h2>
+<ul>
+<li><a href="#what-is-a-string">What is a string?</a></li>
+<li><a href="#brief-overview-of-memory">Brief overview of memory</a>
+<ul>
+<li><a href="#stack">Stack</a></li>
+<li><a href="#heap">Heap</a></li>
+<li><a href="#read-only-section">Read-only section</a></li>
+</ul>
+</li>
+<li><a href="#memory-representation-of-string-types">Memory representation of string types</a>
+<ul>
+<li><a href="#string">String</a></li>
+<li><a href="#string-1">&amp;String</a></li>
+<li><a href="#str">str</a></li>
+<li><a href="#str-1">&amp;str</a></li>
+</ul>
+</li>
+<li><a href="#string-ownership">String ownership</a>
+<ul>
+<li><a href="#example-1-scopes">Example 1: scopes</a></li>
+<li><a href="#example-2-reassignment">Example 2: reassignment</a></li>
+<li><a href="#example-3-ownership-transfer">Example 3: ownership transfer</a></li>
+<li><a href="#example-4-cloning">Example 4: cloning</a></li>
+</ul>
+</li>
+<li><a href="#a-note-about-lifetimes-and-traits">A note about lifetimes and traits</a></li>
+<li><a href="#next-steps">Next steps</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h2 id="what-is-a-string">What is a string?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-string">#</a></h2>
+<p>A string is a type of collection - a data structure that stores multiple values, which together encode characters to represent text. Under the hood, string data itself is really just a sequence of bytes that the computer is able to interpret as being text. The character encoding system in Rust is <strong>UTF-8</strong>. This stands for Unicode Transformation Format, 8-bit encoding, which gives us a clue as to what this system is doing.</p>
+<p>Unicode is a character <strong>encoding standard</strong> to represent text; a unique value (called a code point) is assigned to each character that exists to uniquely identify that character. You can think of it as a classification system for characters, just as we have classification systems for diseases and species of animals. Code points are written in the format of U+ followed by a hexadecimal number. For example &lsquo;A&rsquo; is represented by <code>U+0041</code>.</p>
+<p>UTF-8 is the <strong>encoding system</strong> which takes each code point defined by unicode and converts it to a sequence of 1-4 bytes (chunks of 8 bits). It is backwards compatible with a different and more simple encoding system called ASCII (American Standard Code for Information Interchange), and extends ASCII (which only encodes 128 characters) to handle a much wider variety of characters. In UTF-8, the first 128 characters are equal in value to the ASCII characters and are encoded using 1 byte. For other characters, UTF-8 uses multiple bytes. See Figure 1 for some examples.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Character</th>
+          <th>Code point</th>
+          <th>ASCII (7 bits)</th>
+          <th>UTF-8 (8 bits)</th>
+          <th>Decimal</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A</td>
+          <td>U+0041</td>
+          <td>1000001</td>
+          <td>01000001</td>
+          <td>65</td>
+      </tr>
+      <tr>
+          <td>B</td>
+          <td>U+0042</td>
+          <td>1000010</td>
+          <td>01000010</td>
+          <td>66</td>
+      </tr>
+      <tr>
+          <td>é</td>
+          <td>U+00E9</td>
+          <td>-</td>
+          <td>11000011, 10101001</td>
+          <td>195, 169</td>
+      </tr>
+      <tr>
+          <td>你</td>
+          <td>U+4F60</td>
+          <td>-</td>
+          <td>11100100, 10111101, 10100000</td>
+          <td>228, 189, 160</td>
+      </tr>
+  </tbody>
+</table>
+<p><em>Figure 1: Table showing examples of characters, their unicode code point values, their binary value in ASCII and UTF-8 and the corresponding decimal values. Characters in bold are encoded by ASCII. Note that ASCII encodes characters using 7 bits, and UTF-8 uses 8 bits.</em></p>
+<p>In Rust, the two most commonly used string types are <code>String</code> and <code>&amp;str</code>. Below are some examples of how they can be used - you may recognise similar string functionalities that exist in most programming languages.</p>
+<pre tabindex="0"><code>// declaring strings
+let wir_str = &#34;Women In Rust&#34;;
+let wir_string = String::from(&#34;Women In Rust&#34;);
+
+// concatenating
+let women = String::from(&#34;Women &#34;);
+let in_rust = String::from(&#34;In Rust&#34;);
+let women_in_rust = women + &amp;in_rust;
+
+// appending
+let women = String::from(&#34;Women &#34;);
+women.push_str(&#34;In Rust&#34;);
+women.push(&#39;!&#39;);
+</code></pre><p>The differences between <code>String</code> and <code>&amp;str</code> can be confusing when you first encounter them but this is made much clearer by understanding their underlying memory representations.</p>
+<h2 id="brief-overview-of-memory">Brief overview of memory<a hidden class="anchor" aria-hidden="true" href="#brief-overview-of-memory">#</a></h2>
+<p>When a program runs, the operating system and underlying hardware create a virtual address space for the program which it maps to actual physical memory. The program operates as if it has access to a large, continuous block of memory, represented by virtual memory addresses. This is a concept called virtual memory.  Virtual memory is split into different sections, with differing characteristics and purposes. The main areas which bear relevance to Rust string types are the stack, heap and read-only section (see Figure 2).</p>
+<p><img alt="Virtual memory" loading="lazy" src="/images/VM.png">
+<em>Figure 2: A simplified depiction of virtual memory.</em></p>
+<p>Below are the main points to be aware of:</p>
+<h3 id="stack">Stack<a hidden class="anchor" aria-hidden="true" href="#stack">#</a></h3>
+<ul>
+<li>Used to store data with a size which is fixed at compile-time, meaning that its size cannot change during runtime. For example, primitive type variables and function arguments are stored here.</li>
+</ul>
+<p><strong>Note</strong>: primitive types are simple types that are built into the Rust language. See (5) in the references for more details.</p>
+<ul>
+<li>Memory can be allocated and deallocated quickly.</li>
+<li>Smaller with less memory available than the heap.</li>
+</ul>
+<h3 id="heap">Heap<a hidden class="anchor" aria-hidden="true" href="#heap">#</a></h3>
+<ul>
+<li>Used to store data with a size which is not fixed at compile-time, meaning that its size can change during runtime. For example, dynamically-sized arrays are stored here.</li>
+<li>Slower memory allocation and deallocation than the stack.</li>
+<li>Larger with more memory available than the stack.</li>
+</ul>
+<h3 id="read-only-section">Read-only section<a hidden class="anchor" aria-hidden="true" href="#read-only-section">#</a></h3>
+<ul>
+<li>Here the machine-level instructions generated during compilation are stored and marked as read-only to prevent modification during execution.</li>
+<li>It also contains data which exists and is valid for the entire lifetime of the program and does not change, for example constant variables.</li>
+</ul>
+<h2 id="memory-representation-of-string-types">Memory representation of string types<a hidden class="anchor" aria-hidden="true" href="#memory-representation-of-string-types">#</a></h2>
+<p>Understanding how the different string types in Rust are represented under the hood makes it much easier to understand their functions and use cases. We will go through the main types below.</p>
+<h3 id="string">String<a hidden class="anchor" aria-hidden="true" href="#string">#</a></h3>
+<p><img alt="String" loading="lazy" src="/images/String.png">
+<em>Figure 3: Diagram showing how the <code>String</code> type is represented in memory.</em></p>
+<p>A <code>String</code> in Rust consists of two different parts:</p>
+<p><strong>String data (right of Figure 3)</strong></p>
+<p>This consists of the sequence of bytes that represents characters. In the example, all characters are represented by 1 byte. String data is stored on the heap and its size is not fixed at compile-time; the size of the data can grow and shrink as the program runs. As long as a <code>String</code> is declared as mutable with the <code>mut</code> keyword, its data can be altered during runtime.</p>
+<p><strong>String struct (left of Figure 3)</strong></p>
+<p>This is a fat pointer, which contains a pointer to the string data on the heap, and the capacity (allocated memory) and length (actual space used) of the string data.</p>
+<p>We can demonstrate the <code>String</code> structure using code:</p>
+<pre tabindex="0"><code>let hello = String::from(&#34;hi!&#34;);
+
+// prints the stack memory address where the String struct is stored
+println!(&#34;String struct address: {:p}&#34;, &amp;hello);
+
+// prints the heap address where the string data is stored
+println!(&#34;String data address: {:p}&#34;, hello.as_ptr());
+</code></pre><p>The output of the above looks something like this:</p>
+<pre tabindex="0"><code>String struct address: 0x7ffc51f2cb88
+String data address: 0x5f0232170b10
+</code></pre><p>This shows that the two parts of the <code>String</code> reside in different areas of memory.</p>
+<h3 id="string-1">&amp;String<a hidden class="anchor" aria-hidden="true" href="#string-1">#</a></h3>
+<p><img alt="String" loading="lazy" src="/images/&String.png">
+<em>Figure 4: Diagram showing how <code>&amp;String</code> is represented in memory.</em></p>
+<p>This is a reference to a <code>String</code>, which points to the <code>String</code> struct stored on the stack. As we saw above, this string struct itself contains a pointer to the actual string data. <code>&amp;String</code> is generally an unnecessary level of indirection if an immutable reference (<code>&amp;str</code>) is sufficient. Deref coercion is a feature that means Rust automatically converts <code>&amp;String</code> to <code>&amp;str</code> when needed, so <code>&amp;String</code> is redundant in most cases. For more information about this, see the resources in the references.</p>
+<h3 id="str">str<a hidden class="anchor" aria-hidden="true" href="#str">#</a></h3>
+<p><img alt="String literal" loading="lazy" src="/images/str.png">
+<em>Figure 5: Diagram showing how the <code>str</code> type is represented in memory.</em></p>
+<pre tabindex="0"><code>let my_string: &amp;str = &#34;hi!&#34;;
+</code></pre><p>This is a string literal, consisting of a sequence of bytes that represent characters forming text, stored in the read-only data section of memory during compilation. String literals are immutable by default, meaning they cannot be modified after they are created.</p>
+<p>Notice that the type of <code>my_string</code> is <code>&amp;str</code>, not <code>str</code>. This is because <code>str</code> is an unsized type. The size of <code>str</code> can vary depending on the length of the string, and because of this, its size is not fixed. The compiler cannot determine how much memory to allocate for string literals at compile time, since the size of the string depends on the number of characters, which is only known at runtime.</p>
+<p>This is why you cannot use <code>str</code> directly as the type of a variable. Instead, string literals are always represented as a reference to <code>str</code> (<code>&amp;str</code>). The <code>&amp;str</code> type is sized, meaning it has a fixed size at compile time. It consists of a pointer to the string data and a length field, which is known at compile time (see below).</p>
+<h3 id="str-1">&amp;str<a hidden class="anchor" aria-hidden="true" href="#str-1">#</a></h3>
+<p><img alt="&amp;str" loading="lazy" src="/images/&str.png">
+<em>Figure 6: Diagram showing how <code>&amp;str</code> is represented in memory.</em></p>
+<p>Figure 6 shows two examples of <code>&amp;str</code>, which consist of a pointer which points to the string data stored elsewhere, as well as the length of that string data. <code>&amp;str</code> is always immutable and allows for read-only access to string data. <code>&amp;str</code> is a slice type, which is a reference to a contiguous sequence of elements (in this case, bytes representing characters). Since <code>&amp;str</code> is essentially a slice of a string, it points to a portion of string data which can be either from a string literal (<code>slice_from_literal</code>) or from heap data (<code>slice_from_heap</code>).</p>
+<p>Consider the following code and how it relates to the above diagram:</p>
+<pre tabindex="0"><code>// Points to string literal stored in the read-only data
+let slice_from_literal: &amp;str = &#34;hey&#34;; 
+
+let heap_string = &#34;hey&#34;.to_string();
+let slice_from_heap: &amp;str = &amp;hey[..];
+</code></pre><p><code>slice_from_literal</code> is assigned to the string literal &ldquo;hey&rdquo;. <code>slice_from_heap</code> is assigned to a slice of <code>heap_string</code>, which is a reference to the string data inside the <code>String</code> object. This means that <code>slice_from_heap</code> can efficiently gain read-only access to the string data from <code>heap_string</code>.</p>
+<p>Note that Rust does not allow direct integer indexing of strings - consider the following example:</p>
+<pre tabindex="0"><code>let word = &#34;你好吗&#34;.to_string(); 
+let shorter_word = &amp;word[1..];
+</code></pre><p>This code attempts to access the second character onwards and assign it to <code>shorter_word</code>. However, if you try running this code you will get the following <strong>error</strong>:</p>
+<pre tabindex="0"><code>byte index 1 is not a char boundary; it is inside &#39;你&#39; (bytes 0..3) of `你好吗`
+</code></pre><p>Recall that Rust uses UTF-8 to encode characters, and non-ASCII characters (such as the Mandarin characters above) are encoded using multiple bytes. This code actually attempts to access the second byte rather than the second character, therefore as the <strong>error</strong> message explains, it tries to slice within the first character which Rust does not allow.</p>
+<p>Consider a second example:</p>
+<pre tabindex="0"><code>let a: String = String::from(&#34;hello&#34;);
+let b: &amp;str = a[1];
+</code></pre><p>Even though all of the characters in &ldquo;hello&rdquo; are ASCII characters and encoded using 1 byte, and therefore there is no risk of indexing in the middle of a character, Rust still does not allow this. If you try running this you will get the following <strong>error</strong>:</p>
+<pre tabindex="0"><code>The type `str` cannot be indexed by `{integer}`
+</code></pre><p>So Rust protects us from making any unsafe assumptions about byte boundaries, and disallows direct integer indexing. To access characters or bytes, instead you can use the <code>.chars()</code> or <code>.bytes()</code> method respectively.</p>
+<h2 id="string-ownership">String ownership<a hidden class="anchor" aria-hidden="true" href="#string-ownership">#</a></h2>
+<p>Rust&rsquo;s ownership and borrowing model handles the memory of the <code>String</code> type in a way that&rsquo;s both safe and efficient, eliminating the need for a garbage collector.</p>
+<p>Below are some rules to keep in mind when thinking about ownership in Rust:</p>
+<ol>
+<li>Each owned value has a single owner.</li>
+<li>When the owner goes out of scope, or when ownership is reassigned, the value is dropped, its memory is freed and it is no longer valid.</li>
+<li>Ownership can be transferred (or moved), but it cannot be shared without borrowing.</li>
+</ol>
+<p>Let&rsquo;s go through some examples to illustrate the above.</p>
+<h3 id="example-1-scopes">Example 1: scopes<a hidden class="anchor" aria-hidden="true" href="#example-1-scopes">#</a></h3>
+<pre tabindex="0"><code>{
+let s = String::from(&#34;I love rust!&#34;);
+}
+</code></pre><p>In the above code, <code>s</code> owns the <code>String</code> created with &ldquo;I love rust!&rdquo; (<strong>rule 1</strong>). <code>s</code> is created within a scope defined by the curly brackets. As soon as the scope ends, after the closing curly bracket, <code>s</code> goes out of scope and Rust automatically drops the value it owns, and its associated memory is freed (<strong>rule 2</strong>). This means after the block ends, <code>s</code> is no longer accessible, and attempts to use <code>s</code> outside its scope will result in an <strong>error</strong> at compile-time:</p>
+<pre tabindex="0"><code>error[E0425]: cannot find value `s` in this scope
+   println!(&#34;{}&#34;, s);
+                       ^
+
+help: the binding `s` is available in a different scope in the same function
+ --&gt; src/main.rs:3:13
+  
+            let s = String::from(&#34;I love rust!&#34;);
+                ^
+</code></pre><h3 id="example-2-reassignment">Example 2: reassignment<a hidden class="anchor" aria-hidden="true" href="#example-2-reassignment">#</a></h3>
+<pre tabindex="0"><code>let mut string_example = String::from(&#34;hey&#34;);
+println!(&#34;String struct address: {:p}&#34;, &amp;string_example);
+println!(&#34;String data address: {:p}&#34;, string_example.as_ptr());
+</code></pre><p>In the first line, a mutable <code>String</code> is defined. We then print the struct and string data addresses for <code>string_example</code>. If this is run, the result would look something like this:</p>
+<pre tabindex="0"><code>String struct address: 0x7ffd5b428610
+String data address: 0x611b31bbeb10
+</code></pre><p>This is also shown in the diagram below:
+<img alt="Reassignment example 1" loading="lazy" src="/images/reassignment1.png">
+<em>Figure 7: Diagram showing the initial assignment of the String</em></p>
+<p>In the code below, <code>string_example</code> is re-assigned to a different <code>String</code>. Note that when the struct and string data addresses are printed again, the address of the string struct does not change, but the address of the data it points to does change.</p>
+<pre tabindex="0"><code>string_example = String::from(&#34;hi!&#34;);
+println!(&#34;String struct address: {:p}&#34;, &amp;string_example);
+println!(&#34;String data address: {:p}&#34;, string_example.as_ptr());
+</code></pre><p>The output would look something like this:</p>
+<pre tabindex="0"><code>String struct address: 0x7ffd5b428610
+String data address: 0x611b31bbeb30
+</code></pre><p>Given that there is no longer any owner of the first <code>String</code>, it is dropped and its memory is freed (<strong>rule 2</strong>). The pointer in the hey struct then points instead to the new string data on the heap. This is shown in the diagram below:</p>
+<p><img alt="Reassignment example 2" loading="lazy" src="/images/reassignment2.png">
+<em>Figure 8: Diagram showing reassignment and dropping of the previous value when a variable is reassigned.</em></p>
+<h3 id="example-3-ownership-transfer">Example 3: ownership transfer<a hidden class="anchor" aria-hidden="true" href="#example-3-ownership-transfer">#</a></h3>
+<pre tabindex="0"><code>Let first_owner = String::from(&#34;hi!&#34;);
+let second_owner = first_owner;
+</code></pre><p>In this example, <code>first_owner</code> is initially the single owner of the <code>String</code> &ldquo;hi&rdquo;. In the second line, a new variable <code>second_owner</code> is assigned to <code>first_owner</code>. Given that each owned value can only have a single owner (<strong>rule 1</strong>), ownership of the String is transferred from <code>first_owner</code> to <code>second_owner</code>, meaning that <code>first_owner</code> is no longer valid and no longer owns the <code>String</code> (<strong>rule 3</strong>). The below diagram shows what is happening in memory:</p>
+<p><img alt="Ownership transfer example" loading="lazy" src="/images/ownership_transfer.png">
+<em>Figure 9: Diagram showing ownership transfer from one variable to another.</em></p>
+<p>If you were to try to subsequently access <code>first_owner</code>, you would get a compile-time error:</p>
+<pre tabindex="0"><code>let accessing_first_owner = first_owner.push_str(&#34; how are you?&#34;);
+</code></pre><pre tabindex="0"><code>error[E0382]: borrow of moved value: `first_owner`
+let first_owner = String::from(&#34;hi!&#34;);
+move occurs because `first_string` has type `String`, which does not implement the `Copy` trait
+let second_owner = first_owner;
+-- value moved here   
+let accessing_first_owner = first_owner.push_str(&#34; how are you?&#34;);
+              ^^ value borrowed here after move
+help: consider cloning the value if the performance cost is acceptable
+let second_owner = first_owner.clone();
+           ++++++++
+</code></pre><h3 id="example-4-cloning">Example 4: cloning<a hidden class="anchor" aria-hidden="true" href="#example-4-cloning">#</a></h3>
+<p>Note that the &ldquo;help&rdquo; part of the <strong>error</strong> message above in Example 3 indicates how we can duplicate the underlying string data on the heap so that both <code>first_owner</code> and <code>second_owner</code> can own independent copies of the same data. This can be done using the <code>clone()</code> method:</p>
+<pre tabindex="0"><code>let second_owner = first_owner.clone();
+</code></pre><p>Below is a diagram that shows what happens in memory when cloning occurs. Note that the <strong>error</strong> message in Example 3 recommended &ldquo;consider cloning the value if the performance cost is acceptable.&rdquo; This refers to the fact that cloning creates two separate copies of the string on the heap, which uses up more memory and can have a performance cost because of the need to duplicate the data. Therefore, while cloning can be useful, it should be used carefully, especially when dealing with large data.</p>
+<p><img alt="Ownership transfer example" loading="lazy" src="/images/cloning.png">
+<em>Figure 10: Diagram showing <code>String</code> cloning.</em></p>
+<p>Ownership and borrowing in Rust offer several key advantages over traditional memory management methods, for example garbage collection. The most significant advantage is that Rust enforces memory management at compile-time rather than runtime, resulting in less performance overhead during program execution. This means that memory-related errors, such as use-after-free, dangling pointers, and memory leaks, are caught during compilation rather than while the program is running. There is also no automatic duplication of <code>String</code> data unless explicitly requested by the programmer through cloning. This allows for more efficient memory usage and avoids unnecessary overhead from automatic copying.</p>
+<h2 id="a-note-about-lifetimes-and-traits">A note about lifetimes and traits<a hidden class="anchor" aria-hidden="true" href="#a-note-about-lifetimes-and-traits">#</a></h2>
+<p>Lifetimes and traits play a crucial role in memory management in Rust. Lifetimes are used to ensure that references (e.g. <code>&amp;str</code>) do not outlive the data they point to, preventing dangling references and ensuring memory safety at compile time. Traits define behavior that types must implement, and they are integral in managing borrowing and ownership. For example, you may have noticed that the <strong>error</strong> message in Example 3 mentions that type <code>String</code> does not implement the <code>Copy</code> trait. Lifetimes and traits are important concepts to understand but they are beyond the scope of this article - if you are interested in learning more about this, drop me a comment below and I&rsquo;ll write an article, or take a look at the references at the end.</p>
+<h2 id="next-steps">Next steps<a hidden class="anchor" aria-hidden="true" href="#next-steps">#</a></h2>
+<p>This article explored the basics of strings in Rust, focusing on the two main types: <code>String</code> and <code>&amp;str</code>. These two types cover most common use cases when working with strings in Rust. However, Rust also provides more advanced string types and functionalities for more complex scenarios. More advanced concepts including lifetimes, traits and deref coercion also play a crucial role in string manipulation and memory management in Rust. Further resources to learn more about these topics can be found in the references.</p>
+<h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+<ol>
+<li>
+<p><a href="https://doc.rust-lang.org/book/">The Rust Programming Language Book</a><br>
+The official, free online book about Rust, covering strings, ownership/borrowing, lifetimes, traits and more.</p>
+</li>
+<li>
+<p><a href="https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/">Programming Rust (2nd Edition)</a><br>
+By Jim Blandy, Jason Orendorff, &amp; Leonora F. S. Tindall<br>
+A comprehensive guide to Rust with detailed explanations of core concepts.</p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/std/string/struct.String.html">Rust Documentation - String</a><br>
+Official documentation for Rust&rsquo;s <code>String</code> type.</p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/std/primitive.str.html">Rust Documentation - str</a><br>
+Official documentation for Rust&rsquo;s <code>str</code> primitive type.</p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/rust-by-example/primitives.html">Rust By Example - Primitives</a><br>
+Describes all of Rust&rsquo;s primitive types with examples.</p>
+</li>
+<li>
+<p>Computer Systems: A Programmer&rsquo;s Perspective (3rd Edition)<br>
+By Randal Bryant &amp; David O&rsquo;Hallaron<br>
+Foundational text on computer systems.</p>
+</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><h2>Comments</h2>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div> 
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Emma Baghurst</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+</body>
+
+</html>
