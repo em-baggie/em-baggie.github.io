@@ -1,9 +1,9 @@
 /* Code block styling */
 .highlight {
     margin: 1em 0;
-    padding: 1em;
-    border-radius: 4px;
-    background: #272822 !important;
+    padding: 0;
+    border-radius: 3px;
+    background: transparent !important;
 }
 
 .highlight pre {
@@ -13,10 +13,14 @@
 }
 
 .highlight code {
-    color: #f8f8f2;
-    background: transparent !important;
-    font-family: 'Monaco', 'Consolas', 'Menlo', monospace;
+    background: rgba(175, 184, 193, 0.2) !important;
+    color: inherit !important;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
     font-size: 0.9em;
+    font-family: 'Monaco', 'Consolas', 'Menlo', monospace;
+    display: block;
+    overflow-x: auto;
 }
 
 /* Inline code styling */
@@ -30,19 +34,12 @@ code:not([class]) {
 }
 
 /* Dark mode adjustments */
-[data-theme="dark"] code:not([class]) {
-    background: rgba(175, 184, 193, 0.1);
+[data-theme="dark"] code:not([class]),
+[data-theme="dark"] .highlight code {
+    background: rgba(175, 184, 193, 0.1) !important;
 }
 
-/* Code block language badge */
+/* Remove language badge */
 .highlight::before {
-    content: attr(data-lang);
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0.2em 0.5em;
-    font-size: 0.8em;
-    color: #abb2bf;
-    background: #3e4451;
-    border-radius: 0 4px 0 4px;
+    display: none;
 } 
