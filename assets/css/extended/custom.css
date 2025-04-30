@@ -467,80 +467,44 @@ pre, code {
     display: none;
 }
 
-/* Inline code styling */
+/* Remove all previous code styling */
+/* Inline code styling - for anything wrapped in single backticks */
 :not(pre) > code {
-    background: #f5f5f5 !important;
+    background: rgba(175, 184, 193, 0.2) !important;
     color: var(--primary) !important;
     padding: 0.2em 0.4em !important;
-    border-radius: 4px !important;
-}
-
-/* Code block styling - applies to all code blocks including Rust */
-.post-content .highlight,
-.post-content pre,
-.post-content code[class*="language-"],
-.post-content pre[class*="language-"],
-.post-content .message,
-.post-content .error,
-.post-content .warning,
-.post-content .info {
-    background: #f5f5f5 !important;
-    margin: 1.5em 0 !important;
-    padding: 1.2em !important;
-    border-radius: 8px !important;
-    overflow-x: auto !important;
-    color: var(--primary) !important;
-    white-space: pre !important;
-    word-wrap: normal !important;
-    word-break: normal !important;
-    tab-size: 4 !important;
-    -moz-tab-size: 4 !important;
-}
-
-/* Ensure all elements within code blocks have consistent styling */
-.post-content .highlight pre,
-.post-content .highlight code,
-.post-content .highlight span,
-.post-content pre code,
-.post-content pre span,
-.post-content code[class*="language-"] *,
-.post-content pre[class*="language-"] *,
-.post-content .message *,
-.post-content .error *,
-.post-content .warning *,
-.post-content .info * {
-    background: transparent !important;
-    color: var(--primary) !important;
-    border: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    border-radius: 3px !important;
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
-    white-space: pre !important;
-    word-wrap: normal !important;
-    word-break: normal !important;
+    font-size: 0.95rem !important;
+}
+
+/* Dark mode for inline code */
+[data-theme="dark"] :not(pre) > code {
+    background: rgba(175, 184, 193, 0.1) !important;
+}
+
+/* Basic container styling for all code blocks */
+.highlight {
+    margin: 1em 0;
+    overflow-x: auto;
+}
+
+/* Remove any background overrides to let syntax highlighting work */
+.highlight pre,
+.highlight code {
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
+    font-size: 0.95rem !important;
     tab-size: 4 !important;
-    -moz-tab-size: 4 !important;
+}
+
+/* Remove the language badge */
+.highlight::before {
+    display: none;
 }
 
 /* Remove any syntax highlighting overrides */
-.language-rust,
-.language-rust *,
-.hljs,
-.hljs * {
-    color: var(--primary) !important;
-    background: transparent !important;
-    white-space: pre !important;
-    word-wrap: normal !important;
-    word-break: normal !important;
-}
-
-.language-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.3rem 0.8rem;
-    border-radius: var(--radius);
-    font-size: 0.9rem;
-    font-weight: 500;
+.chroma * {
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
 }
 
 /* Post meta styling */
@@ -560,5 +524,57 @@ pre, code {
 .post-author {
     color: var(--secondary);
     font-size: 0.95rem;
+}
+
+/* Code styling */
+code:not([class]) {
+    background: rgba(175, 184, 193, 0.2);
+    color: inherit;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-family: 'Monaco', 'Consolas', 'Menlo', monospace;
+}
+
+/* Code block container styling */
+.highlight {
+    margin: 1em 0;
+    background: transparent !important;
+}
+
+.highlight pre {
+    margin: 0;
+    padding: 0;
+    background: transparent !important;
+}
+
+/* Code block styling - keep syntax colors but match background */
+.highlight code {
+    background: rgba(175, 184, 193, 0.2) !important;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-family: 'Monaco', 'Consolas', 'Menlo', monospace;
+    display: block;
+    overflow-x: auto;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] code:not([class]) {
+    background: rgba(175, 184, 193, 0.1);
+}
+
+[data-theme="dark"] .highlight code {
+    background: rgba(175, 184, 193, 0.1) !important;
+}
+
+/* Remove language badge */
+.highlight::before {
+    display: none;
+}
+
+/* Allow syntax highlighting colors to show through */
+.chroma {
+    background: transparent !important;
 }
 
