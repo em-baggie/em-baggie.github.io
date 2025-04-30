@@ -2,33 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>http://localhost:56917/blog/</loc>
     <lastmod>2025-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:56917/categories/</loc>
     <lastmod>2025-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:56917/</loc>
     <lastmod>2025-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/rust/</loc>
+    <loc>http://localhost:56917/categories/rust/</loc>
     <lastmod>2025-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/the_complicated_world_of_strings_in_rust/</loc>
+    <loc>http://localhost:56917/blog/the_complicated_world_of_strings_in_rust/</loc>
     <lastmod>2025-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/resources/</loc>
+    <loc>http://localhost:56917/blog/resources/</loc>
     <lastmod>2025-01-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/general/</loc>
+    <loc>http://localhost:56917/categories/general/</loc>
     <lastmod>2025-01-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>http://localhost:56917/contact/</loc>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>http://localhost:56917/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>http://localhost:56917/projects/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:56917/tags/</loc>
   </url>
 </urlset>

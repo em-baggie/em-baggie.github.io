@@ -517,3 +517,68 @@ body.dark .terms-tags a:hover {
     color: #75715e !important;
 }
 
+/* Code block styling - base styles for all code blocks */
+.highlight {
+    margin: 1em 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.highlight pre {
+    padding: 1em;
+    margin: 0;
+    overflow-x: auto;
+}
+
+/* Consistent styling for all code */
+.highlight pre code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* Specific styling for Rust code */
+.highlight.language-rust {
+    background-color: #24273a !important;
+}
+
+.highlight.language-rust pre {
+    color: #cad3f5;
+}
+
+/* Style error messages and command output */
+.highlight.language-text,
+.highlight.language-console,
+.highlight.language-shell,
+.highlight.language-output {
+    background-color: #24273a !important;
+}
+
+.highlight.language-text pre,
+.highlight.language-console pre,
+.highlight.language-shell pre,
+.highlight.language-output pre {
+    color: #cad3f5;
+}
+
+/* Error text specific styling */
+.highlight.language-text .err,
+.highlight.language-console .err,
+.highlight.language-shell .err {
+    color: #ed8796;
+}
+
+/* Ensure dark theme compatibility */
+body.dark .highlight {
+    background-color: #24273a !important;
+}
+
+body.dark .highlight pre {
+    color: #cad3f5;
+}
+
+/* Override any theme specific styles that might interfere */
+.highlight:not([class*="language-"]) code {
+    color: inherit !important;
+}
+
