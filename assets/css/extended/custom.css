@@ -528,13 +528,18 @@ body.dark .terms-tags a:hover {
     padding: 1em;
     margin: 0;
     overflow-x: auto;
+    white-space: pre !important;
 }
 
 /* Consistent styling for all code */
 .highlight pre code {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Roboto Mono', monospace !important;
     font-size: 0.9em;
     line-height: 1.5;
+    white-space: pre !important;
+    word-spacing: normal !important;
+    word-break: normal !important;
+    tab-size: 4 !important;
 }
 
 /* Specific styling for Rust code */
@@ -550,15 +555,19 @@ body.dark .terms-tags a:hover {
 .highlight.language-text,
 .highlight.language-console,
 .highlight.language-shell,
-.highlight.language-output {
+.highlight.language-output,
+.highlight.language-plaintext {
     background-color: #24273a !important;
 }
 
 .highlight.language-text pre,
 .highlight.language-console pre,
 .highlight.language-shell pre,
-.highlight.language-output pre {
+.highlight.language-output pre,
+.highlight.language-plaintext pre {
     color: #cad3f5;
+    font-family: 'Roboto Mono', monospace !important;
+    white-space: pre !important;
 }
 
 /* Error text specific styling */
@@ -566,6 +575,7 @@ body.dark .terms-tags a:hover {
 .highlight.language-console .err,
 .highlight.language-shell .err {
     color: #ed8796;
+    white-space: pre !important;
 }
 
 /* Ensure dark theme compatibility */
@@ -580,5 +590,19 @@ body.dark .highlight pre {
 /* Override any theme specific styles that might interfere */
 .highlight:not([class*="language-"]) code {
     color: inherit !important;
+    white-space: pre !important;
+}
+
+/* Additional fixes for text wrapping and spacing */
+.post-content pre {
+    white-space: pre !important;
+    overflow-x: auto;
+    word-wrap: normal !important;
+    word-break: keep-all !important;
+}
+
+.post-content code {
+    white-space: pre !important;
+    word-spacing: normal !important;
 }
 
