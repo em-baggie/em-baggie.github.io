@@ -620,22 +620,26 @@ body[class*="projects"] .page-header h1,
 }
 
 /* Center titles on projects page */
-.projects-grid h1,
-.projects-grid h2,
-.projects-grid h3,
-.projects-grid .section-title,
-.projects-grid .page-header,
-.projects-grid .page-header h1,
-[data-path="/projects/"] h1,
-[data-path="/projects/"] h2,
-[data-path="/projects/"] h3,
-[data-path="/projects/"] .section-title,
-[data-path="/projects/"] .page-header,
-[data-path="/projects/"] .page-header h1 {
+.projects-grid > h1,
+.projects-grid > h2,
+.projects-grid > h3,
+.projects-grid > .section-title,
+[data-path="/projects/"] > h1,
+[data-path="/projects/"] > h2,
+[data-path="/projects/"] > h3,
+[data-path="/projects/"] > .section-title {
     text-align: center !important;
     justify-content: center !important;
     align-items: center !important;
     width: 100%;
+}
+
+/* Keep project card titles left-aligned */
+.project-card h3,
+.project-card .project-title {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
 }
 
 /* Override any other alignment styles for projects page */
