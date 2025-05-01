@@ -123,7 +123,7 @@ println!("String data address: {:p}", hello.as_ptr());
 
 The output of the above looks something like this:
 
-```bash
+```plaintext
 String struct address: 0x7ffc51f2cb88
 String data address: 0x5f0232170b10
 ```
@@ -183,7 +183,7 @@ let a: String = String::from("hello");
 let b: &str = a[1];
 ```
 Even though all of the characters in "hello" are ASCII characters and encoded using 1 byte, and therefore there is no risk of indexing in the middle of a character, Rust still does not allow this. If you try running this you will get the following **error**:
-```bash
+```plaintext
 The type `str` cannot be indexed by `{integer}`
 ```
 So Rust protects us from making any unsafe assumptions about byte boundaries, and disallows direct integer indexing. To access characters or bytes, instead you can use the `.chars()` or `.bytes()` method respectively.
@@ -207,7 +207,7 @@ let s = String::from("I love rust!");
 }
 ```
 In the above code, `s` owns the `String` created with "I love rust!" (**rule 1**). `s` is created within a scope defined by the curly brackets. As soon as the scope ends, after the closing curly bracket, `s` goes out of scope and Rust automatically drops the value it owns, and its associated memory is freed (**rule 2**). This means after the block ends, `s` is no longer accessible, and attempts to use `s` outside its scope will result in an **error** at compile-time:
-```bash
+```plaintext
 error[E0425]: cannot find value `s` in this scope
    println!("{}", s);
                        ^
@@ -226,7 +226,7 @@ println!("String struct address: {:p}", &string_example);
 println!("String data address: {:p}", string_example.as_ptr());
 ```
 In the first line, a mutable `String` is defined. We then print the struct and string data addresses for `string_example`. If this is run, the result would look something like this:
-```bash
+```plaintext
 String struct address: 0x7ffd5b428610
 String data address: 0x611b31bbeb10
 ```
@@ -241,7 +241,7 @@ println!("String struct address: {:p}", &string_example);
 println!("String data address: {:p}", string_example.as_ptr());
 ```
 The output would look something like this:
-```bash
+```plaintext
 String struct address: 0x7ffd5b428610
 String data address: 0x611b31bbeb30
 ```
@@ -265,7 +265,7 @@ If you were to try to subsequently access `first_owner`, you would get a compile
 ```rs
 let accessing_first_owner = first_owner.push_str(" how are you?");
 ```
-```bash
+```plaintext
 error[E0382]: borrow of moved value: `first_owner`
 let first_owner = String::from("hi!");
 move occurs because `first_string` has type `String`, which does not implement the `Copy` trait
