@@ -487,24 +487,39 @@ pre, code {
 .highlight {
     margin: 1em 0;
     overflow-x: auto;
+    padding: 1em;
+    border-radius: 4px;
 }
 
-/* Remove any background overrides to let syntax highlighting work */
-.highlight pre,
-.highlight code {
+/* Style for plain text output blocks */
+.language-text pre,
+.language-plaintext pre,
+.language-text code,
+.language-plaintext code {
+    background: rgba(175, 184, 193, 0.2) !important;
+    color: var(--primary) !important;
     font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
     font-size: 0.95rem !important;
-    tab-size: 4 !important;
+}
+
+/* Dark mode for text blocks */
+[data-theme="dark"] .language-text pre,
+[data-theme="dark"] .language-plaintext pre,
+[data-theme="dark"] .language-text code,
+[data-theme="dark"] .language-plaintext code {
+    background: rgba(175, 184, 193, 0.1) !important;
+}
+
+/* Let Rust syntax highlighting work normally */
+.language-rust pre,
+.language-rust code {
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
+    font-size: 0.95rem !important;
 }
 
 /* Remove the language badge */
 .highlight::before {
     display: none;
-}
-
-/* Remove any syntax highlighting overrides */
-.chroma * {
-    font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
 }
 
 /* Post meta styling */
