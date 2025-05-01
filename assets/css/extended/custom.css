@@ -170,20 +170,29 @@ pre, code {
     }
 }
 
-/* Ensure all titles are left-aligned */
+/* Blog post titles are left-aligned */
+.post-single .post-header,
+.post-single .post-title,
+article.post-single h1 {
+    text-align: left !important;
+    margin: 2rem auto var(--content-gap) auto;
+}
+
+/* Main page titles are center-aligned */
 .page-header,
 .post-header,
-.post-single .post-header {
+.main .page-header,
+.main .post-header {
     margin: 2rem auto var(--content-gap) auto;
-    text-align: left !important;
+    text-align: center !important;
 }
 
 .page-header h1,
 .post-title,
-.post-single .post-title,
-article .post-title {
+.main .page-header h1,
+.main .post-title {
     font-size: 2rem;
-    text-align: left !important;
+    text-align: center !important;
     margin: 0;
     line-height: 1.3;
 }
@@ -596,5 +605,51 @@ code:not([class]) {
 /* Allow syntax highlighting colors to show through */
 .chroma {
     background: transparent !important;
+}
+
+/* Center title specifically on projects page */
+.projects-page .page-header,
+.projects-page .page-header h1,
+body[class*="projects"] .page-header,
+body[class*="projects"] .page-header h1,
+.page[data-path="/projects/"] .page-header,
+.page[data-path="/projects/"] .page-header h1 {
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Center titles on projects page */
+.projects-grid h1,
+.projects-grid h2,
+.projects-grid h3,
+.projects-grid .section-title,
+.projects-grid .page-header,
+.projects-grid .page-header h1,
+[data-path="/projects/"] h1,
+[data-path="/projects/"] h2,
+[data-path="/projects/"] h3,
+[data-path="/projects/"] .section-title,
+[data-path="/projects/"] .page-header,
+[data-path="/projects/"] .page-header h1 {
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100%;
+}
+
+/* Override any other alignment styles for projects page */
+.projects-grid,
+[data-path="/projects/"] {
+    .page-header,
+    .post-header,
+    .post-single .post-header,
+    .page-header h1,
+    .post-title,
+    .post-single .post-title,
+    article .post-title,
+    .section-title {
+        text-align: center !important;
+    }
 }
 
