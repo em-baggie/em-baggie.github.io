@@ -33,6 +33,9 @@ theme = 'PaperMod'
   disableThemeToggle = true
   comments = true
 
+  images = ["/images/default-social.png"]  # Default social image
+  description = "Software Engineer working in Financial Tech with a background in Medicine."
+
   [params.assets]
     disableFingerprinting = true
     customCSS = ["css/custom.css"]

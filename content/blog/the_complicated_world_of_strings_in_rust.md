@@ -5,6 +5,7 @@ description: "A comprehensive guide to understanding the most common string type
 author: "Emma Baghurst · Edited by: Caroline Morton"
 categories: ["Rust"]
 comments: true
+images: ["/images/String.png"]
 ---
 
 String types exist as a means to represent text. Rust string types are more complicated compared to other languages, primarily because Rust forces the programmer to consider more of the underlying implementation details of strings when writing code, rather than abstracting it away. This is due to Rust's emphasis on memory-safety. This article aims to explain the basics of strings in detail and where relevant clear diagrams will be used to help illustrate the internal structure of strings and to simplify complex concepts.
