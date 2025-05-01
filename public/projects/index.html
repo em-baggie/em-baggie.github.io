@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Blog | Emma Baghurst</title>
+<title>Projects | Emma Baghurst</title>
 <meta name="keywords" content="">
-<meta name="description" content="My thoughts and articles on various software engineering topics">
+<meta name="description" content="My open source contributions and personal projects">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:62514/blog/">
+<link rel="canonical" href="http://localhost:62514/projects/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:62514/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:62514/favicon-16x16.png">
@@ -18,8 +18,8 @@
 <link rel="mask-icon" href="http://localhost:62514/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:62514/blog/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:62514/blog/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:62514/projects/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:62514/projects/">
 <noscript>
     <style>
         #theme-toggle,
@@ -50,12 +50,12 @@
             </li>
             <li>
                 <a href="http://localhost:62514/projects/" title="Projects">
-                    <span>Projects</span>
+                    <span class="active">Projects</span>
                 </a>
             </li>
             <li>
                 <a href="http://localhost:62514/blog/" title="Blog">
-                    <span class="active">Blog</span>
+                    <span>Blog</span>
                 </a>
             </li>
             <li>
@@ -67,77 +67,67 @@
     </nav>
 </header>
 <main class="main">
-<div class="blog-container">
-    <div class="blog-main">
+<article class="post-single">
+    <header class="post-header">
+        <h1 class="post-title">Open Source Contributions</h1>
+    </header>
+    <div class="projects-grid">
+        <div class="project-card">
+            <h3>Codelist Tools</h3>
+            <span class="language-badge rust">Rust</span>
+            <span class="language-badge python">Python</span>
+            <span class="language-badge r">R</span>
+            <p>A set of packages for better codelist management in medical research, including support for SNOMED, OPCS and ICD-10 classification systems. Allows for validation of codelists and mapping between different classification systems. The core functionality is written in Rust for fast and memory-efficient operations. Python and R bindings allow for easy integration into existing workflows.</p>
+            <div class="project-links">
+                <a href="https://github.com/CarolineMorton/codelist-tools" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Phage Cocktail Generator</h3>
+            <span class="language-badge rust">Rust</span>
+            <span class="language-badge python">Python</span>
+            <p>Tools for selecting the optimum bacteriophage cocktail against a given combination of bacterial strains, based on experimental host-range data. In the future, will also include functionality for generating graphs from the results using Python with a Rust-Python interface.</p>
+            <div class="project-links">
+                <a href="https://github.com/em-baggie/phage-cocktail-generator" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Dockpack</h3>
+            <span class="language-badge rust">Rust</span>
+            <p>A file distribution tool built on top of Docker. As Docker is already integrated into continuous integration pipelines and major cloud providers, Dockpack enables teams to distribute private packages using infrastructure that they are already using and paying for.</p>
+            <div class="project-links">
+                <a href="https://crates.io/crates/dockpack" class="project-link" target="_blank" rel="noopener noreferrer">View on crates.io</a>
+                <a href="https://github.com/maxwellflitton/dockpack" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+        </div>
+
         <header class="post-header">
-            <h1 class="post-title">Blog</h1>
+            <h1 class="post-title">Personal Projects</h1>
         </header>
 
-        <aside class="blog-sidebar">
-            <div class="sidebar-section">
-                <h3 class="section-title">Categories</h3>
-                <div class="category-list">
-                    
-                    <a href="http://localhost:62514/categories/general/" class="language-badge general">
-                        General <span class="category-count">(1)</span>
-                    </a>
-                    
-                    <a href="http://localhost:62514/categories/rust/" class="language-badge rust">
-                        Rust <span class="category-count">(1)</span>
-                    </a>
-                    
-                </div>
+        <div class="project-card">
+            <h3>OpenFresh</h3>
+            <span class="language-badge typescript">TypeScript</span>
+            <span class="language-badge nodejs">Node.js</span>
+            <p>An AI agent for streamlining grocery shopping. Retrieves relevant ingredients from a recipe text file using OpenAI function calling and searches for these ingredients in the grocery supplier API using reverse engineering of the API response. Then adds the ingredients to the user's basket, and directs the user to the checkout page.</p>
+            <div class="project-links">
+                <a href="https://github.com/em-baggie/OpenFresh" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
             </div>
-        </aside>
+        </div>
 
-        <div class="posts-section">
-            <h3 class="section-title">Recent Articles</h3>
-            <div class="posts">
-                
-                <article class="post-entry">
-                    <header class="entry-header">
-                        <h2>The Complicated World Of Strings In Rust</h2>
-                    </header>
-                    <div class="entry-content">
-                        <p>A comprehensive guide to understanding the most common string types in Rust, their memory representations and how they are encoded.</p>
-                    </div>
-                    <footer class="entry-footer">
-                        <time>April 29, 2025</time>
-                        
-                        <div class="post-categories">
-                            
-                            <span class="language-badge rust">Rust</span>
-                            
-                        </div>
-                        
-                    </footer>
-                    <a class="entry-link" href="http://localhost:62514/blog/the_complicated_world_of_strings_in_rust/"></a>
-                </article>
-                
-                <article class="post-entry">
-                    <header class="entry-header">
-                        <h2>Essential Programming Resources For Beginners</h2>
-                    </header>
-                    <div class="entry-content">
-                        <p>A collection of free, high-quality learning resources for programming, computer systems, and Rust.</p>
-                    </div>
-                    <footer class="entry-footer">
-                        <time>January 25, 2025</time>
-                        
-                        <div class="post-categories">
-                            
-                            <span class="language-badge general">General</span>
-                            
-                        </div>
-                        
-                    </footer>
-                    <a class="entry-link" href="http://localhost:62514/blog/resources/"></a>
-                </article>
-                
+        <div class="project-card">
+            <h3>EchoCal</h3>
+            <span class="language-badge typescript">TypeScript</span>
+            <span class="language-badge nodejs">Node.js</span>
+            <p>Fetches data from Google Calendar events and provides real-time audible alerts to the user shortly before they begin. Designed for accessibility, the app runs in the background ensuring users do not miss notifications when away from the screen.</p>
+            <div class="project-links">
+                <a href="https://github.com/em-baggie/EchoCal" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
             </div>
         </div>
     </div>
-</div>
+</article>
     </main>
     
 <footer class="footer">
