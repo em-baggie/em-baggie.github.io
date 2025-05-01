@@ -172,7 +172,7 @@ let word = "你好吗".to_string();
 let shorter_word = &word[1..];
 ```
 This code attempts to access the second character onwards and assign it to `shorter_word`. However, if you try running this code you will get the following **error**:
-```bash
+```plaintext
 byte index 1 is not a char boundary; it is inside '你' (bytes 0..3) of `你好吗`
 ```
 Recall that Rust uses UTF-8 to encode characters, and non-ASCII characters (such as the Mandarin characters above) are encoded using multiple bytes. This code actually attempts to access the second byte rather than the second character, therefore as the **error** message explains, it tries to slice within the first character which Rust does not allow.
