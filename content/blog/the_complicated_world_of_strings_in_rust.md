@@ -139,7 +139,7 @@ This is a reference to a `String`, which points to the `String` struct stored on
 ### str
 ![String literal](/images/str.png)
 *Figure 5: Diagram showing how the `str` type is represented in memory.*
-```
+```rust
 let my_string: &str = "hi!";
 ```
 This is a string literal, consisting of a sequence of bytes that represent characters forming text, stored in the read-only data section of memory during compilation. String literals are immutable by default, meaning they cannot be modified after they are created.
