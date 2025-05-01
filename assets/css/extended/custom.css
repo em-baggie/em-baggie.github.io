@@ -170,16 +170,20 @@ pre, code {
     }
 }
 
+/* Ensure all titles are left-aligned */
 .page-header,
-.post-header {
+.post-header,
+.post-single .post-header {
     margin: 2rem auto var(--content-gap) auto;
-    text-align: left;
+    text-align: left !important;
 }
 
 .page-header h1,
-.post-title {
+.post-title,
+.post-single .post-title,
+article .post-title {
     font-size: 2rem;
-    text-align: left;
+    text-align: left !important;
     margin: 0;
     line-height: 1.3;
 }
