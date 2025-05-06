@@ -61,7 +61,7 @@ let in_rust = String::from("In Rust");
 let women_in_rust = women + &in_rust;
 
 // appending
-let women = String::from("Women ");
+let mut women = String::from("Women ");
 women.push_str("In Rust");
 women.push('!');
 ```
